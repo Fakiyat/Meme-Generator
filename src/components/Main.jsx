@@ -4,7 +4,7 @@ function Main() {
   const [meme, setMeme] = useState({
     toptext: "One does not hold",
     bottomtext: "Any grudegs",
-    randomImage: "../../images/meme.png",
+    randomImage: "https://i.imgflip.com/1bij.jpg",
   });
 
   const [allMemes, setAllMemes] = useState([]);
@@ -18,10 +18,10 @@ function Main() {
   //This fuction is called when the button is click and it will generate a random image form 1 to the max length of the data array
   function handleMeme() {
     const randomNumber = Math.floor(Math.random() * allMemes.length);
-    const url = allMemes[randomNumber].url;
-    setAllMemes((prevMeme) => ({
+    const newImage = allMemes[randomNumber].url;
+    setMeme((prevMeme) => ({
       ...prevMeme,
-      randomImage: url,
+      randomImage: newImage,
     }));
   }
 
