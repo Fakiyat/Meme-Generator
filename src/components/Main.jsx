@@ -9,6 +9,12 @@ function Main() {
 
   const [allMemes, setAllMemes] = useState([]);
 
+  useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => setAllMemes(data.data.memes));
+  }, []);
+
   //This fuction is called when the button is click and it will generate a random image form 1 to the max length of the data array
   function handleMeme() {
     const randomNumber = Math.floor(Math.random() * allMemes.length);
@@ -18,11 +24,7 @@ function Main() {
       randomImage: url,
     }));
   }
-  useEffect(() => {
-    fetch("https://api.imgflip.com/get_memes")
-      .then((res) => res.json())
-      .then((data) => setAllMemes(data.data.memes));
-  }, []);
+
   function handleInput(event) {
     const { value, name } = event.currentTarget;
     setMeme((prevMeme) => ({
